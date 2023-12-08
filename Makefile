@@ -15,6 +15,12 @@ all: bin/$(MODULE)
 run:
 	dub run
 
+# format
+.PHONY: format
+format: tmp/format_d
+tmp/format_d: $(D)
+	dub run dfmt -- -i $? && touch $@
+
 # rule
 bin/$(MODULE): $(D) $(J)
 
